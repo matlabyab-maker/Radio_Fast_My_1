@@ -14,8 +14,10 @@ public class StationAdapter extends BaseAdapter {
     @Override public Object getItem(int p){return data.get(p);}
     @Override public long getItemId(int p){return p;}
     @Override public View getView(int p, View convert, ViewGroup parent){
-        RadioStation s=data.get(p); LinearLayout row=new LinearLayout(context); row.setOrientation(LinearLayout.HORIZONTAL); row.setGravity(Gravity.CENTER_VERTICAL); row.setPadding(8,4,4,4);
-        TextView t=new TextView(context); t.setText(s.toString()); t.setTextColor(Color.WHITE); t.setTextSize(14); t.setGravity(Gravity.CENTER_VERTICAL); row.addView(t,new LinearLayout.LayoutParams(0,58,1));
+        RadioStation s=data.get(p);
+        LinearLayout row=new LinearLayout(context); row.setOrientation(LinearLayout.HORIZONTAL); row.setGravity(Gravity.CENTER_VERTICAL); row.setPadding(8,4,4,4);
+        TextView t=new TextView(context); t.setText((p+1)+". "+s.toString()); t.setTextColor(Color.WHITE); t.setTextSize(14); t.setGravity(Gravity.CENTER_VERTICAL); t.setMaxLines(3);
+        row.addView(t,new LinearLayout.LayoutParams(0,64,1));
         Button star=new Button(context); star.setText(s.favorite?"★":"☆"); star.setTextSize(18); star.setTextColor(Color.rgb(80,190,255)); row.addView(star,new LinearLayout.LayoutParams(54,54));
         row.setOnClickListener(v->listener.select(s)); star.setOnClickListener(v->{listener.favorite(s); notifyDataSetChanged();});
         return row;

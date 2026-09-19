@@ -28,3 +28,19 @@ Build fix: the FFmpeg decoder uses the Jellyfin Media3 FFmpeg decoder artifact b
 
 Build Fix 2 (2026-09-19):
 The unavailable FFmpeg Maven dependency has been removed from the application dependency list. The project uses the standard AndroidX Media3 ExoPlayer/HLS/DASH/Session/UI modules that are available from Google Maven. No fake or unavailable FFmpeg Maven coordinate is required for this build. The playback service keeps Media3's extension renderer preference enabled, so the project remains ready for a locally supplied decoder extension in a future build.
+
+
+## Changes in BuildFixed3
+- Screen orientation changed to full sensor rotation (automatic portrait/landscape).
+- Custom Radio now attempts to load live top-voted stations from RadioBrowser and falls back to the bundled list.
+- Country lookup uses the documented exact country-code endpoint.
+- The 1–400 kbps ruler now applies a Media3 maximum audio bitrate selection when the stream exposes adaptive audio variants. A normal single-bitrate internet radio stream cannot be re-encoded on the phone; true bitrate conversion requires a server-side transcoder.
+- Per-minute traffic display now measures the app UID's received bytes and rolls immediately into minute 2, 3, etc. while playback continues.
+
+
+### BuildFixed4 changes
+- Removed the outer vertical ScrollView so the dashboard itself does not scroll; each station ListView scrolls independently.
+- Increased RadioBrowser station limits to 500 and added multiple server retries.
+- Prefer RadioBrowser reachable stations and deduplicate by station UUID.
+- Added alternate raw stream URL and a MediaPlayer compatibility fallback after Media3 playback errors.
+- Auto rotation remains enabled via fullSensor.
