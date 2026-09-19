@@ -24,3 +24,7 @@ Build with GitHub Actions using Java 17 and Gradle 8.13.
 
 
 Build fix: the FFmpeg decoder uses the Jellyfin Media3 FFmpeg decoder artifact because the AndroidX Media3 1.11.0 Maven coordinates do not publish `androidx.media3:media3-decoder-ffmpeg` as a directly consumable app dependency. The FFmpeg decoder is kept enabled through DefaultRenderersFactory.
+
+
+Build Fix 2 (2026-09-19):
+The unavailable FFmpeg Maven dependency has been removed from the application dependency list. The project uses the standard AndroidX Media3 ExoPlayer/HLS/DASH/Session/UI modules that are available from Google Maven. No fake or unavailable FFmpeg Maven coordinate is required for this build. The playback service keeps Media3's extension renderer preference enabled, so the project remains ready for a locally supplied decoder extension in a future build.
