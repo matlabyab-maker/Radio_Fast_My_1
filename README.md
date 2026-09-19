@@ -21,3 +21,6 @@ Dashboard-oriented internet radio Android project.
 The 1–400 kbps ruler is a target/selection control. It cannot transcode an arbitrary source stream locally. Actual lower-bitrate restreaming requires a real server-side transcoder/restream endpoint; this project does not insert fake endpoints.
 
 Build with GitHub Actions using Java 17 and Gradle 8.13.
+
+
+Build fix: the FFmpeg decoder uses the Jellyfin Media3 FFmpeg decoder artifact because the AndroidX Media3 1.11.0 Maven coordinates do not publish `androidx.media3:media3-decoder-ffmpeg` as a directly consumable app dependency. The FFmpeg decoder is kept enabled through DefaultRenderersFactory.
